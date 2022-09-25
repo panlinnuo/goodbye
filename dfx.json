@@ -4,6 +4,10 @@
       "main": "src/goodbye_backend/main.mo",
       "type": "motoko"
     },
+    "goodbye_backend2": {
+      "main": "src/goodbye_backend/main.mo",
+      "type": "motoko"
+    },
     "goodbye_frontend": {
       "dependencies": [
         "goodbye_backend"

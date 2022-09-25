@@ -60,14 +60,14 @@ async function setName() {
 }
 
 var num_follows = 0;
-async function follow() {
-  let follows = await goodbye_backend.follows_name();
+async function follows() {
+  let follows = await goodbye_backend.follows();
   if (num_follows == follows.length) return;
   num_follows = follows.length;
   let info = "";
   for(var i = 0; i < num_follows; i ++) {
-    let id = follows[i];
-    info += "<button class='info_btn' id= " + id + ">" + id + "</button>";
+    let id = follows[i]['uid'];
+    info += "<button class='info_btn' id= " + id + ">" + follows[i]['uname'] + "</button>";
     info += "<div id=" + id + "_msg" + "></div>";
     document.getElementById("follow").innerHTML = info;  
     document.getElementById(id).addEventListener('click', function handleClick(event) {
@@ -77,10 +77,12 @@ async function follow() {
 }
 
 var num_posts2 = 0;
-async function load_posts2(user) {
-  let posts_section2 = document.getElementById(user + "_msg");
+async function load_posts2(id) {
+  alert(id);
+  let posts_section2 = document.getElementById(id + "_msg");
   try {
-    let posts2 = await goodbye_backend.posts2('"' + user + '"');
+    let posts2 = await goodbye_backend.posts2(id, 1);
+    console.info(posts2);
     if (num_posts2 == posts2.length) return;
     posts_section2.replaceChildren([]);
     num_posts2 = posts2.length;
@@ -95,8 +97,6 @@ async function load_posts2(user) {
 }
 
 async function load() {
-  follow();
-
   let post_button = document.getElementById("post");
   post_button.onclick = post;
   load_posts();
@@ -107,6 +107,8 @@ async function load() {
 
   let set_button = document.getElementById("setName");
   set_button.onclick = setName;
+
+  follows();
 }
 
 window.onload = load;
