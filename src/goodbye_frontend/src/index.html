@@ -3,22 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>goodbye</title>
+    <title>Microblog</title>
     <base href="/" />
     <link rel="icon" href="favicon.ico" />
-    <link type="text/css" rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"/>
   </head>
   <body>
+    <header><h1>Microblog</h1></header>
     <main>
-      <img src="logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#">
-        <label for="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting"></section>
+      <div>
+        <label for="message">What do you want to post?</label>
+        <textarea id="message"></textarea>
+        <label for="pwd">password</label>
+        <input id="pwd"/><br/>
+        <button id="post">Post</button>
+        <span id="error"></span>
+        <section id="posts"></section>
+      </div>
+      <br/>
+      <div>
+        <label for="name">Get or set name:</label>
+        <input id="name"/>
+        <span id="info"></span><br/>
+        <button id="getName">Get</button>
+        <button id="setName">Set</button>
+      </div>
+      <br/>
+      <div> 
+        <div id="follow"></div>
+      </div>
     </main>
   </body>
 </html>
