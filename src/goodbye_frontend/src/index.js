@@ -68,8 +68,11 @@ async function follows() {
   for(var i = 0; i < num_follows; i ++) {
     let id = follows[i]['uid'];
     info += "<button class='info_btn' id= " + id + ">" + follows[i]['uname'] + "</button>";
-    info += "<div id=" + id + "_msg" + "></div>";
-    document.getElementById("follow").innerHTML = info;  
+    info += "<section id=" + id + "-msg" + "></section></br>";
+  }
+  document.getElementById("follow").innerHTML = info;
+  for(var i = 0; i < num_follows; i ++) {
+    let id = follows[i]['uid'];
     document.getElementById(id).addEventListener('click', function handleClick(event) {
       load_posts2(id);
     })
@@ -78,17 +81,16 @@ async function follows() {
 
 var num_posts2 = 0;
 async function load_posts2(id) {
-  alert(id);
-  let posts_section2 = document.getElementById(id + "_msg");
+  alert("Id: " + id + " , Please wait");
+  let posts_section2 = document.getElementById(id + "-msg");
   try {
     let posts2 = await goodbye_backend.posts2(id, 1);
-    console.info(posts2);
     if (num_posts2 == posts2.length) return;
     posts_section2.replaceChildren([]);
     num_posts2 = posts2.length;
     for(var i = num_posts2 - 1; i >= 0; i --) {
       let post2 = document.createElement("p");
-      post.innerText = posts2[i].author + " SAY: " +  posts2[i].text + " - " + Date((BigInt(posts2[i].time) / BigInt(1000000000))).toLocaleString(); 
+      post2.innerText = posts2[i].author + " SAY: " +  posts2[i].text + " - " + Date((BigInt(posts2[i].time) / BigInt(1000000000))).toLocaleString(); 
       posts_section2.appendChild(post2);
     }
   } catch (error) {
